@@ -1,0 +1,13 @@
+IF ($Credentials -isnot [PSCredential]) {
+    #write-host 'Include "Lotterywest\" in the User Name field.' -ForegroundColor Yellow
+    $Credentials = Get-Credential
+}
+Connect-AzureAD -Credential $Credentials
+
+# Get device object id from computer display name using a CSV list
+$computers = Import-Csv -Path "C:\TEMP\AADLaptopList.csv"  
+$objectids = foreach ($computer in $computers) {  
+    Get-AzureADDevice -SearchString "$($computer.name)" | select DisplayName, ObjectID }
+
+# Export device object IDs to CSV
+$objectids | Export-csv -Path "C:\temp\computer-list-objectids.csv" 
