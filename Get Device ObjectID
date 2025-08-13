@@ -1,5 +1,4 @@
 IF ($Credentials -isnot [PSCredential]) {
-    #write-host 'Include "Lotterywest\" in the User Name field.' -ForegroundColor Yellow
     $Credentials = Get-Credential
 }
 Connect-AzureAD -Credential $Credentials
