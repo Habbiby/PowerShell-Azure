@@ -213,7 +213,7 @@ IF($SelectedRole.Id -notin $UserActivations.Id){
 
 #Lists all activated roles for the user
 Write-Host -ForegroundColor Green "(10/10) Currently activated roles:"
-$UserActivations | Sort-Object StartDateTime  -Descending | ft -AutoSize
+$UserActivations | Sort-Object StartDateTime  -Descending | Format-Table -AutoSize
 
 ###################################################
 
